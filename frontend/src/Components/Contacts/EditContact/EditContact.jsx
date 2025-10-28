@@ -3,71 +3,78 @@ import { Link, useNavigate, useParams } from 'react-router-dom'
 import { ContactServices } from '../../../Services/ContactServices'
 
 const EditContact = () => {
-  let navigate=useNavigate()
-  let{contactId}=useParams()
-  let [state,setState]=useState({
-    loading:true,
-    contact:{
-    name:"",
-    photo:"",
-    mobile:"",
-    email:"",
-    title:'',
-    company:"",
-    groupId:""
-  },
-  errorMessage:""
-})
-
-useEffect(()=>{
-  let promise=new Promise((res,rej)=>{
-    setState({...state,loading:false})
-    let response=ContactServices.getContact(contactId)
-    res(response)
+  let navigate = useNavigate()
+  let { contactId } = useParams()
+  let [state, setState] = useState({
+    loading: true,
+    contact: {
+      name: "",
+      photo: "",
+      mobile: "",
+      email: "",
+      title: '',
+      company: "",
+      groupId: ""
+    },
+    errorMessage: ""
   })
-  promise.then((res1)=>{
-    setState({...state,loading:false,contact:res1.data})
-  }).catch(()=>{
-    setState({...state,loading:false,errorMessage:alert("Data Not Fetched")})
-  })
-},contactId)
 
-  const UpdateHandle=(event)=>{
-    setState({...state,contact:{
-      ...state.contact,
-      [event.target.name]:event.target.value
-    }})
+  useEffect(() => {
+    let promise = new Promise((res, rej) => {
+      setState({ ...state, loading: false })
+      let response = ContactServices.getContact(contactId)
+      res(response)
+    })
+    promise.then((res1) => {
+      setState({ ...state, loading: false, contact: res1.data })
+    }).catch(() => {
+      setState({ ...state, loading: false, errorMessage: alert("Data Not Fetched") })
+    })
+  }, contactId)
+
+  const UpdateHandle = (event) => {
+    setState({
+      ...state, contact: {
+        ...state.contact,
+        [event.target.name]: event.target.value
+      }
+    })
   }
-  let{loading,contact,errorMessage}=state
+  let { loading, contact, errorMessage } = state
 
-  let submitHandle=(event)=>{
+  let submitHandle = (event) => {
     event.preventDefault()
-    let promise=new Promise((res,rej)=>{
-      setState({...state,loading:false})
-      let postData=ContactServices.updateContact(contact,contactId)
+    let promise = new Promise((res, rej) => {
+      setState({ ...state, loading: false })
+      let postData = ContactServices.updateContact(contact, contactId)
       res(postData)
     })
-    promise.then((res1)=>{
+    promise.then((res1) => {
       if (res1) {
-        setState({...state,loading:false})
-        navigate("/contacts/list",{replace:true})
-      }else{
-        setState({...state,loading:false})
-        navigate("/contacts/edit",{replace:false})
+        setState({ ...state, loading: false })
+        navigate("/contacts/list", { replace: true })
+      } else {
+        setState({ ...state, loading: false })
+        navigate("/contacts/edit", { replace: false })
       }
-    }).catch(()=>{
-      setState({...state,loading:false,errorMessage:alert("Data Not Posted...")})
+    }).catch(() => {
+      setState({ ...state, loading: false, errorMessage: alert("Data Not Posted...") })
     })
   }
   return (
     <>
-    {/* <pre>{JSON.stringify(contact)}</pre> */}
-       <section className='edit-contact'>
+      {/* <pre>{JSON.stringify(contact)}</pre> */}
+      <section className='edit-contact'>
         <div className="container p-3">
           <div className="row">
             <div className="col">
               <p className="h3 text-primary">Edit Contact</p>
-              <p className='fst-italic'>Lorem ipsum dolor sit amet consectetur adipisicing elit. In natus ipsum doloribus rerum aperiam est quibusdam? Quam unde eligendi delectus veritatis molestias officiis omnis illum, soluta at. Deserunt, aliquid harum.</p>
+              <p className='fst-italic'>
+                Update the details of an existing contact.
+                You can modify personal information such as name, mobile, and email,
+                as well as professional details like company, job title, and group.
+                Once saved, the updated information will be reflected immediately in your contact list.
+              </p>
             </div>
             <div className="row align-items-center">
               <div className="col-md-4">
@@ -98,13 +105,13 @@ useEffect(()=>{
                   </div>
 
                   <div>
-                    <input type="submit" value="Update" className="btn btn-primary"/>
+                    <input type="submit" value="Update" className="btn btn-primary" />
                     <Link to={'/Contacts/list'} className='btn btn-danger ms-2'>Cancel</Link>
                   </div>
                 </form>
               </div>
               <div className="col-md-6">
-                <img src={contact.photo} alt="" className='contact-img'/>
+                <img src={contact.photo} alt="" className='contact-img' />
               </div>
             </div>
           </div>
