@@ -76,7 +76,7 @@ const ContactList = () => {
           <div className="row">
             <div className="col-md-6">
               <form action="" className="row">
-                <div className="col">
+                <div className="col-md-6">
                   <div className="mb-2">
                     <input type="text" name='text' onChange={searchContacts} value={query.text} placeholder='Search Names' className='form-control' />
                   </div>
