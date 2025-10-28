@@ -99,11 +99,11 @@ const ContactList = () => {
                 {
                   filterContacts.length && filterContacts.map((contact) => {
                     return (
-                      <div className="col-md-6 mt-4 ">
+                      <div className="col-lg-6 mt-4 ">
                         <div className="card d-flex justify-content-around flex-wrap">
                           <div className="card-body">
-                            <div className="row align-items-md-center">
-                              <div className="col-md-4 d-flex justify-content-sm-center">
+                            <div className="row align-items-md-center gap-4 gap-md-0">
+                              <div className="col-md-4 d-flex justify-content-center">
                                 <img src={contact.photo} alt="" className='contact-img' />
                               </div>
                               <div className="col-md-7">
