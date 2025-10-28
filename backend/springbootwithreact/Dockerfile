@@ -23,9 +23,8 @@ WORKDIR /app
 # The JAR file is typically found in the target/ directory
 # Use the correct JAR name based on your project artifact ID
 COPY --from=builder /app/target/*.jar app.jar
-
 # Define the command to run the application when the container starts
-ENTRYPOINT ["java", "-jar", "/app.jar"]
+ENTRYPOINT ["java", "-jar", "/app/app.jar"]
 
 # Expose the default Spring Boot port (often 8080)
 EXPOSE 8080
