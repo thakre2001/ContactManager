@@ -113,7 +113,7 @@ const ContactList = () => {
                                   <li className="list-group-item">EMAIL : <span className='fw-bold'>{contact.email}</span></li>
                                 </ul>
                               </div>
-                              <div className="col-md-1 d-flex flex-md-column align-items-center justify-content-sm-around">
+                              <div className="col-md-1 d-flex flex-md-column align-items-center justify-content-around">
                                 <Link to={`/Contacts/view/${contact.contactId}`} className='btn btn-warning my-1'><i className='fa fa-eye' /></Link>
                                 <Link to={`/Contacts/edit/${contact.contactId}`} className='btn btn-primary my-1'><i className='fa fa-pen' /></Link>
                                 <button className='btn btn-danger my-1' onClick={() => { deleteCont(contact.contactId) }}><i className='fa fa-trash' /></button>
