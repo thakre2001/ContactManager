@@ -1,10 +1,10 @@
 import React from 'react'
-import spinner from './amalie-steiness.gif'
+import spinner from './spinner.webp'
 
 const Spinner = () => {
   return (
-    <div>
-      <img src={spinner} alt="" className='' />
+    <div className='w-100 flex justify-center'>
+      <img src={spinner} alt="" className='mx-auto img-fluid' />
     </div>
   )
 }

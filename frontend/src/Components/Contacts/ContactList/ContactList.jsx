@@ -57,7 +57,7 @@ const ContactList = () => {
   let { loading, contacts, errorMessage, filterContacts } = state
   return (
 
-    <div>
+    <div className='w-100'>
       {/* <pre>{JSON.stringify(query.text)}</pre> */}
       <section className='contact-search'>
         <div className="container mt-4">
